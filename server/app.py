@@ -91,12 +91,24 @@ def get_match(match_id):
     return match_schema.jsonify(match)
 
 # UPDATE
-@app.route('/api/player/<player_id>', methods=["PUT"])
+@app.route('/api/player-match/<player_id>', methods=["PUT"])
 def set_player_match_id(player_id):
     player = Player.query.get(player_id)
     player_match_id = request.json['player_match_id']
 
     player.player_match_id = player_match_id
+
+    db.session.commit()
+
+    return player_schema.jsonify(player)
+
+
+@app.route('/api/player-health/<player_id>', methods=["PUT"])
+def set_player_health_total(player_id):
+    player = Player.query.get(player_id)
+    player_health_total = request.json['player_health_total']
+
+    player.player_health_total = player_health_total
 
     db.session.commit()
 
