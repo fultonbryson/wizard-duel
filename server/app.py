@@ -44,6 +44,7 @@ class MatchSchema(ma.Schema):
 
 match_schema = MatchSchema()
 
+
 # CREATE
 @app.route('/api/player', methods=["POST"])
 def create_player():
@@ -90,6 +91,7 @@ def get_match(match_id):
     
     return match_schema.jsonify(match)
 
+
 # UPDATE
 @app.route('/api/player-match/<player_id>', methods=["PUT"])
 def set_player_match_id(player_id):
@@ -114,7 +116,20 @@ def set_player_health_total(player_id):
 
     return player_schema.jsonify(player)
 
+
 # DELETE
+@app.route('/api/players/<match_id>', methods=["DELETE"])
+def delete_players(match_id):
+    players = Player.query.filter(Player.player_match_id == match_id)
+
+    for player in players:
+        db.session.delete(player)
+
+    db.session.commit()
+
+    return "Successfully deleted players"
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
