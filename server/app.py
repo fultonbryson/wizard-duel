@@ -49,7 +49,7 @@ match_schema = MatchSchema()
 def create_player():
     player_name = request.json['player_name']
     player_health_total = 0
-    player_match_id = 0
+    player_match_id = request.json['player_match_id']
 
     new_player = Player(player_name, player_health_total, player_match_id)
 
@@ -76,6 +76,13 @@ def create_match():
     return match_schema.jsonify(match)
 
 # READ
+@app.route('/api/players/<match_id>', methods=['GET'])
+def get_roster(match_id):
+    roster = Player.query.filter(Player.player_match_id == match_id)
+    result = players_schema.dump(roster)
+    return jsonify(result)
+
+    
 # UPDATE
 # DELETE
 
