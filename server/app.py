@@ -60,6 +60,21 @@ def create_player():
 
     return player_schema.jsonify(player)
 
+
+@app.route('/api/match', methods=["POST"])
+def create_match():
+    match_format = request.json['match_format']
+    match_start_health = request.json['match_start_health']
+
+    new_match = Match(match_format, match_start_health)
+
+    db.session.add(new_match)
+    db.session.commit()
+
+    match = Match.query.get(new_match.id)
+
+    return match_schema.jsonify(match)
+
 # READ
 # UPDATE
 # DELETE
