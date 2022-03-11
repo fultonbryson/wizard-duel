@@ -80,9 +80,16 @@ def create_match():
 def get_roster(match_id):
     roster = Player.query.filter(Player.player_match_id == match_id)
     result = players_schema.dump(roster)
+
     return jsonify(result)
 
+
+@app.route('/api/match/<match_id>', methods=['GET'])
+def get_match(match_id):
+    match = Match.query.get(match_id)
     
+    return match_schema.jsonify(match)
+
 # UPDATE
 # DELETE
 
