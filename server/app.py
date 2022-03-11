@@ -1,3 +1,5 @@
+from nis import match
+from xml.etree.ElementTree import QName
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -29,7 +31,20 @@ player_schema = PlayerSchema()
 players_schema = PlayerSchema(many=True)    
 
 
+class Match(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    match_format = db.Column(db.String(20), unique=False)
+    match_start_health = db.Column(db.Integer, unique=False)
 
+    def __init__(self, match_format, match_start_health):
+        self.match_format = match_format
+        self.match_start_health = match_start_health
+
+class MatchSchema(ma.Schema):
+    class Meta:
+        fields = ('match_format', 'match_start_health')
+
+match_schema = MatchSchema()
 
 # CREATE
 # READ
