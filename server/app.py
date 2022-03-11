@@ -1,6 +1,4 @@
-from nis import match
-from xml.etree.ElementTree import QName
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
@@ -47,6 +45,21 @@ class MatchSchema(ma.Schema):
 match_schema = MatchSchema()
 
 # CREATE
+@app.route('/api/player', methods=["POST"])
+def create_player():
+    player_name = request.json['player_name']
+    player_health_total = 0
+    player_match_id = 0
+
+    new_player = Player(player_name, player_health_total, player_match_id)
+
+    db.session.add(new_player)
+    db.session.commit()
+
+    player = Player.query.get(new_player.id)
+
+    return player_schema.jsonify(player)
+
 # READ
 # UPDATE
 # DELETE
