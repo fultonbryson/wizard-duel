@@ -49,7 +49,7 @@ match_schema = MatchSchema()
 def create_player():
     player_name = request.json['player_name']
     player_health_total = 0
-    player_match_id = request.json['player_match_id']
+    player_match_id = 0
 
     new_player = Player(player_name, player_health_total, player_match_id)
 
@@ -91,6 +91,17 @@ def get_match(match_id):
     return match_schema.jsonify(match)
 
 # UPDATE
+@app.route('/api/player/<player_id>', methods=["PUT"])
+def set_player_match_id(player_id):
+    player = Player.query.get(player_id)
+    player_match_id = request.json['player_match_id']
+
+    player.player_match_id = player_match_id
+
+    db.session.commit()
+
+    return player_schema.jsonify(player)
+
 # DELETE
 
 if __name__ == '__main__':
