@@ -85,7 +85,7 @@ def get_roster(match_id):
     return jsonify(result)
 
 
-@app.route('/api/match/<match_id>', methods=['GET'])
+@app.route('/api/matches/<match_id>', methods=['GET'])
 def get_match(match_id):
     match = Match.query.get(match_id)
     
@@ -129,6 +129,14 @@ def delete_players(match_id):
 
     return "Successfully deleted players"
 
+
+@app.route('/api/matches/<match_id>', methods=["DELETE"])
+def delete_match(match_id):
+    match = Match.query.get(match_id)
+    db.session.delete(match)
+    db.session.commit()
+
+    return "Match successfully deleted"
 
 
 if __name__ == '__main__':
