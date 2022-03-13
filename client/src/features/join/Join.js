@@ -1,11 +1,57 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Field } from "react-final-form";
+import axios from "axios";
+
+import { setPlayerMatchId } from "../../slices/playerSlice";
 
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
 const Join = () => {
+  const player = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+
+  function onSubmit(values) {
+    const API_URL = "http://127.0.0.1:5000/api";
+
+    axios
+      .put(`${API_URL}/player-match/${player.player_id}`, {
+        player_match_id: values.player_match_id,
+      })
+      .then((response) => {
+        const player = { ...response.data };
+        dispatch(setPlayerMatchId(player));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className='join'>
       <PageHeader className='join__header' header='JOIN' />
+
+      <PageTitle className='join__title' title={`${player.player_name}barf`} />
+
+      <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <div className='join__form'>
+              <label>Search for Match</label>
+              <Field
+                name='player_match_id'
+                component='input'
+                placeholder='Match ID'
+              />
+
+              <button type='submit'>SEARCH</button>
+            </div>
+          </form>
+        )}
+      />
+
+      <PageFooter className='join__footer' />
     </div>
   );
 };

@@ -14,10 +14,15 @@ export const playerSlice = createSlice({
     createPlayer: (state, action) => {
       const data = action.payload;
       state.player_name = data.player_name;
+      state.player_id = data.id;
+    },
+    setPlayerMatchId: (state, action) => {
+      const data = action.payload;
+      state.player_match_id = data.player_match_id;
     },
   },
 });
 
-export const { createPlayer } = playerSlice.actions;
+export const { createPlayer, setPlayerMatchId } = playerSlice.actions;
 
 export default playerSlice.reducer;
