@@ -1,1 +1,1 @@
-# wizard-duel
+# WIZARD DUEL
