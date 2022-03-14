@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import axios from "axios";
 
@@ -9,6 +10,8 @@ import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
 const Join = () => {
   const player = useSelector((state) => state.player);
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   function onSubmit(values) {
@@ -31,7 +34,7 @@ const Join = () => {
     <div className='join'>
       <PageHeader className='join__header' header='JOIN' />
 
-      <PageTitle className='join__title' title={`${player.player_name}barf`} />
+      <PageTitle className='join__title' title={`${player.player_name}`} />
 
       <Form
         onSubmit={onSubmit}
