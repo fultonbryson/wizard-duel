@@ -24,6 +24,8 @@ const Join = () => {
       .then((response) => {
         const player = { ...response.data };
         dispatch(setPlayerMatchId(player));
+
+        history.push(`/lobby`);
       })
       .catch((error) => {
         console.log(error);

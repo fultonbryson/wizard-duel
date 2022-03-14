@@ -21,6 +21,7 @@ function main() {
             <Route path='/' exact component={Start} />
             <Route path='/directory' exact component={Directory} />
             <Route path='/join' exact component={Join} />
+            <Route path='/lobby/:id' exact component={Join} />
           </Switch>
         </App>
       </BrowserRouter>
