@@ -18,7 +18,7 @@ export const playerSlice = createSlice({
     },
     setPlayerMatchId: (state, action) => {
       const data = action.payload;
-      state.player_match_id = data.player_match_id;
+      state.player_match_id = data;
     },
   },
 });

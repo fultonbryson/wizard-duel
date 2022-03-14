@@ -23,9 +23,10 @@ const Join = () => {
       })
       .then((response) => {
         const player = { ...response.data };
-        dispatch(setPlayerMatchId(player));
+        const match_id = player.player_match_id;
+        dispatch(setPlayerMatchId(match_id));
 
-        history.push(`/lobby`);
+        history.push(`/lobby/${player.player_match_id}`);
       })
       .catch((error) => {
         console.log(error);

@@ -9,6 +9,8 @@ import { store } from "./store";
 import Start from "./features/start/Start";
 import Directory from "./features/directory/Directory";
 import Join from "./features/join/Join";
+import Host from "./features/host/Host";
+import Lobby from "./features/lobby/Lobby";
 
 import "./style/main.scss";
 
@@ -21,7 +23,8 @@ function main() {
             <Route path='/' exact component={Start} />
             <Route path='/directory' exact component={Directory} />
             <Route path='/join' exact component={Join} />
-            <Route path='/lobby/:id' exact component={Join} />
+            <Route path='/host' exact component={Host} />
+            <Route path='/lobby/:id' exact component={Lobby} />
           </Switch>
         </App>
       </BrowserRouter>

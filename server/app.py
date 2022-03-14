@@ -42,7 +42,7 @@ class Match(db.Model):
 
 class MatchSchema(ma.Schema):
     class Meta:
-        fields = ('match_id', 'match_format', 'match_start_health')
+        fields = ('id', 'match_format', 'match_start_health')
 
 match_schema = MatchSchema()
 
