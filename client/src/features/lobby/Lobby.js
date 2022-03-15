@@ -35,6 +35,7 @@ const Lobby = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setPlayerHealthTotal(data.player_health_total));
+        history.push(`/match/${match.match_id}`);
       });
   }
 

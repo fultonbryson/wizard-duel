@@ -11,6 +11,7 @@ import Directory from "./features/directory/Directory";
 import Join from "./features/join/Join";
 import Host from "./features/host/Host";
 import Lobby from "./features/lobby/Lobby";
+import Match from "./features/match/Match";
 
 import "./style/main.scss";
 
@@ -25,6 +26,7 @@ function main() {
             <Route path='/join' exact component={Join} />
             <Route path='/host' exact component={Host} />
             <Route path='/lobby/:id' exact component={Lobby} />
+            <Route path='/match/:id' exact component={Match} />
           </Switch>
         </App>
       </BrowserRouter>
