@@ -10,7 +10,7 @@ export const matchSlice = createSlice({
   name: "match",
   initialState,
   reducers: {
-    createMatch: (state, action) => {
+    setMatchDetails: (state, action) => {
       const data = action.payload;
       state.match_id = data.id;
       state.match_format = data.match_format;
@@ -19,6 +19,6 @@ export const matchSlice = createSlice({
   },
 });
 
-export const { createMatch } = matchSlice.actions;
+export const { setMatchDetails } = matchSlice.actions;
 
 export default matchSlice.reducer;

@@ -20,9 +20,14 @@ export const playerSlice = createSlice({
       const data = action.payload;
       state.player_match_id = data;
     },
+    setPlayerHealthTotal: (state, action) => {
+      const data = action.payload;
+      state.player_health_total = data;
+    },
   },
 });
 
-export const { createPlayer, setPlayerMatchId } = playerSlice.actions;
+export const { createPlayer, setPlayerMatchId, setPlayerHealthTotal } =
+  playerSlice.actions;
 
 export default playerSlice.reducer;

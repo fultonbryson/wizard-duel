@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
-import axios from "axios";
+
+import { API_URL } from "../../apiData/apiData";
 
 import { createPlayer } from "../../slices/playerSlice";
 
@@ -15,16 +16,19 @@ const Start = () => {
   const history = useHistory();
 
   function onSubmit(values) {
-    const API_URL = "http://127.0.0.1:5000/api";
+    const data = JSON.parse(JSON.stringify({ ...values }));
 
-    const data = JSON.parse(JSON.stringify(values.player_name));
-    axios
-      .post(`${API_URL}/player`, {
-        player_name: data,
-      })
-      .then((response) => {
-        const player = { ...response.data };
-        dispatch(createPlayer(player));
+    fetch(`${API_URL}/player`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        dispatch(createPlayer(data));
         history.push("/directory");
       })
       .catch((error) => {

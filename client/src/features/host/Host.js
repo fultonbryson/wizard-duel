@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
+import { useHistory } from "react-router";
 import axios from "axios";
 
-import { createPlayer, setPlayerMatchId } from "../../slices/playerSlice";
-import { createMatch } from "../../slices/matchSlice";
+import { setPlayerMatchId } from "../../slices/playerSlice";
+import { setMatchDetails } from "../../slices/matchSlice";
 
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
 const Host = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const player = useSelector((state) => state.player);
@@ -19,21 +21,59 @@ const Host = () => {
 
     console.log(data);
 
-    axios
-      .post(`${API_URL}/match`, {
-        match_format: data.match_format,
-        match_start_health: data.match_start_health,
+    fetch(`${API_URL}/match`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const match = { ...data };
+        dispatch(setMatchDetails(match));
+
+        fetch(`${API_URL}/player-match/${player.player_id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            player_match_id: match.id,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            dispatch(setPlayerMatchId(data.player_match_id));
+            history.push(`/lobby/${match.id}`);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
-      .then((response) => {
-        const match = { ...response.data };
-        dispatch(createMatch(match));
-        dispatch(setPlayerMatchId(match.id));
-      })
-      .then(() => {})
       .catch((error) => {
         console.log(error);
       });
   }
+
+  //   axios
+  //     .post(`${API_URL}/match`, {
+  //       match_format: data.match_format,
+  //       match_start_health: data.match_start_health,
+  //     })
+  //     .then((response) => {
+  //       const match = { ...response.data };
+  //       dispatch(setMatchDetails(match));
+
+  //       axios.put(`${API_URL}/player-match/${player.player_id}`, {
+  //         player_match_id: match.id,
+  //       });
+
+  //       history.push(`/lobby/${match.id}`);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   return (
     <div className='host'>

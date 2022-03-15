@@ -5,7 +5,8 @@ from flask_cors import CORS, cross_origin
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+
+cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost", }})
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
@@ -49,7 +50,7 @@ match_schema = MatchSchema()
 
 # CREATE
 @app.route('/api/player', methods=["POST"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def create_player():
     player_name = request.json['player_name']
     player_health_total = 0
@@ -66,7 +67,7 @@ def create_player():
 
 
 @app.route('/api/match', methods=["POST"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def create_match():
     match_format = request.json['match_format']
     match_start_health = request.json['match_start_health']
@@ -82,7 +83,7 @@ def create_match():
 
 # READ
 @app.route('/api/players/<match_id>', methods=['GET'])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def get_roster(match_id):
     roster = Player.query.filter(Player.player_match_id == match_id)
     result = players_schema.dump(roster)
@@ -91,7 +92,7 @@ def get_roster(match_id):
 
 
 @app.route('/api/matches/<match_id>', methods=['GET'])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def get_match(match_id):
     match = Match.query.get(match_id)
     
@@ -100,7 +101,7 @@ def get_match(match_id):
 
 # UPDATE
 @app.route('/api/player-match/<player_id>', methods=["PUT"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def set_player_match_id(player_id):
     player = Player.query.get(player_id)
     player_match_id = request.json['player_match_id']
@@ -113,7 +114,7 @@ def set_player_match_id(player_id):
 
 
 @app.route('/api/player-health/<player_id>', methods=["PUT"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def set_player_health_total(player_id):
     player = Player.query.get(player_id)
     player_health_total = request.json['player_health_total']
@@ -127,7 +128,7 @@ def set_player_health_total(player_id):
 
 # DELETE
 @app.route('/api/players/<match_id>', methods=["DELETE"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def delete_players(match_id):
     players = Player.query.filter(Player.player_match_id == match_id)
 
@@ -140,7 +141,7 @@ def delete_players(match_id):
 
 
 @app.route('/api/matches/<match_id>', methods=["DELETE"])
-@cross_origin(origin='*' , headers=['access-control-allow-origin','Content- Type'])
+@cross_origin(origin='*' , headers=['access-control-allow-origin'])
 def delete_match(match_id):
     match = Match.query.get(match_id)
     db.session.delete(match)
