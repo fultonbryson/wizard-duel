@@ -61,7 +61,7 @@ const Lobby = () => {
         className='lobby__match-id'
         title={matchFound ? `${match.match_id}` : "No Match Found"}
       />
-      <Roster className='lobby__roster' />
+      <Roster className='lobby__roster' inMatch={false} />
       <div className='lobby__leave' onClick={() => handleLeaveLobby()}>
         Leave Lobby
       </div>

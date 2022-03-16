@@ -24,10 +24,23 @@ export const playerSlice = createSlice({
       const data = action.payload;
       state.player_health_total = data;
     },
+    decrementPlayerHealthTotal: (state) => {
+      --state.player_health_total;
+      console.log(state.player_health_total);
+    },
+    incrementPlayerHealthTotal: (state) => {
+      ++state.player_health_total;
+      console.log(state.player_health_total);
+    },
   },
 });
 
-export const { createPlayer, setPlayerMatchId, setPlayerHealthTotal } =
-  playerSlice.actions;
+export const {
+  createPlayer,
+  setPlayerMatchId,
+  setPlayerHealthTotal,
+  decrementPlayerHealthTotal,
+  incrementPlayerHealthTotal,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;
