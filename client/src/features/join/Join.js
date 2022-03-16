@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Field } from "react-final-form";
-import axios from "axios";
 
 import { API_URL } from "../../apiData/apiData";
 import { setPlayerMatchId } from "../../slices/playerSlice";
@@ -32,31 +31,6 @@ const Join = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    // try {
-    //   const response = await axios.put(
-    //     `${API_URL}/player-match/${player.player_id}`,
-    //     {
-    //       player_match_id: values.player_match_id,
-    //     }
-    //   );
-    //   const data = await response.data;
-    //   dispatch(setPlayerMatchId(data.player_match_id));
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    //   .then((response) => {
-    //     const player = { ...response.data };
-    //     const match_id = player.player_match_id;
-    //     dispatch(setPlayerMatchId(match_id));
-    //     // console.log(match_id)
-    //   })
-    //   .then((match_id) => {
-    //     history.push(`/lobby/${match_id}`);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
 
   return (

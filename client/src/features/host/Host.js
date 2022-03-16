@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { useHistory } from "react-router";
-import axios from "axios";
 
 import { setPlayerMatchId } from "../../slices/playerSlice";
 import { setMatchDetails } from "../../slices/matchSlice";
+
+import { API_URL } from "../../apiData/apiData";
 
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
@@ -16,7 +17,6 @@ const Host = () => {
   const player = useSelector((state) => state.player);
 
   function onSubmit(values) {
-    const API_URL = "http://127.0.0.1:5000/api";
     const data = JSON.parse(JSON.stringify(values));
 
     console.log(data);
@@ -54,26 +54,6 @@ const Host = () => {
         console.log(error);
       });
   }
-
-  //   axios
-  //     .post(`${API_URL}/match`, {
-  //       match_format: data.match_format,
-  //       match_start_health: data.match_start_health,
-  //     })
-  //     .then((response) => {
-  //       const match = { ...response.data };
-  //       dispatch(setMatchDetails(match));
-
-  //       axios.put(`${API_URL}/player-match/${player.player_id}`, {
-  //         player_match_id: match.id,
-  //       });
-
-  //       history.push(`/lobby/${match.id}`);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 
   return (
     <div className='host'>

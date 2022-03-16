@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { API_URL } from "../../apiData/apiData";
+
 import { setMatchPlayerList } from "../../slices/matchSlice";
 
 const Roster = (props) => {
@@ -13,7 +15,6 @@ const Roster = (props) => {
   const [playerList, setPlayerList] = useState([]);
 
   useEffect(() => {
-    const API_URL = "http://127.0.0.1:5000/api";
     fetch(`${API_URL}/players/${match.match_id}`)
       .then((response) => response.json())
       .then((data) => {
