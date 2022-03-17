@@ -1,0 +1,10 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.page-header {
+  font-size: 20px;
+
+  h1 {
+    @include primary-text;
+  }
+}

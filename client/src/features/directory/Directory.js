@@ -13,7 +13,7 @@ const Directory = () => {
   }
   return (
     <div className='directory'>
-      <PageHeader className='directory__header' header='WIZARD - DUEL' />
+      <PageHeader className='directory__header' header='WIZARD DUEL' />
 
       <PageTitle className='directory__title' title={`${player.player_name}`} />
 

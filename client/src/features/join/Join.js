@@ -7,7 +7,6 @@ import { API_URL } from "../../apiData/apiData";
 import { setPlayerMatchId } from "../../slices/playerSlice";
 
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
-import { setMatchDetails } from "../../slices/matchSlice";
 
 const Join = () => {
   const player = useSelector((state) => state.player);

@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+@mixin primary-text {
+  font-family: "Press Start 2P", cursive;
+  color: $white;
+}
+
+@mixin secondary-text {
+  font-family: "Roboto Mono", monospace;
+  color: $white;
+}
+
+@mixin tertiary-text {
+  font-family: "Roboto Mono", monospace;
+  color: $light-grey;
+}

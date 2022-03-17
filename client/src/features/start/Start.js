@@ -38,7 +38,8 @@ const Start = () => {
 
   return (
     <div className='start'>
-      <PageHeader className='start__header' header='WIZARD - DUEL' />
+      <PageHeader className='start__header' header='WIZARD DUEL' />
+      <PageTitle className='start__version' title='v1.0.0 Beta' />
 
       {screenToggle ? (
         <div className='start__menu menu'>
@@ -49,11 +50,11 @@ const Start = () => {
             render={({ handleSubmit }) => (
               <form onSubmit={handleSubmit}>
                 <div className='menu__form'>
-                  <label>Player Name</label>
+                  <label>What's Yer Name?</label>
                   <Field
                     name='player_name'
                     component='input'
-                    placeholder="What's Yer Name?"
+                    placeholder='Player Name'
                   />
 
                   <button type='submit'>Continue</button>

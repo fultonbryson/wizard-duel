@@ -75,7 +75,6 @@ def create_match():
     new_match = Match(match_format, match_start_health)
 
     db.session.add(new_match)
-    db.session.commit()
 
     match = Match.query.get(new_match.id)
 

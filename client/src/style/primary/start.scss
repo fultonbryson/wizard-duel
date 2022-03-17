@@ -1,0 +1,137 @@
+@import "../helpers/mixins.scss";
+
+.start {
+  height: 100%;
+  display: grid;
+  align-items: flex-start;
+  justify-content: center;
+  grid-template-rows: 24px[header-s]64px[header-e version-s]24px[version-e content-s]1fr[content-e footer-s]12px[footer-e]8px;
+
+  &__header {
+    grid-row: header-s/header-e;
+  }
+
+  &__version {
+    grid-row: version-s/version-e;
+    display: grid;
+    text-align: end;
+    h3 {
+      @include secondary-text;
+    }
+  }
+
+  &__start {
+    align-self: center;
+    grid-row: content-s/content-e;
+    height: 40px;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 4rem;
+    letter-spacing: 2px;
+    @include primary-text;
+
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+      color: $light-grey;
+      letter-spacing: 8px;
+      cursor: pointer;
+    }
+  }
+
+  &__menu {
+    grid-row: content-s/content-e;
+    height: 100%;
+
+    display: grid;
+    justify-content: center;
+    align-content: space-evenly;
+    text-align: center;
+
+    .page-title {
+      h3 {
+        @include secondary-text;
+        font-size: 2rem;
+      }
+    }
+
+    form {
+      .menu__form {
+        display: grid;
+        justify-content: center;
+        grid-template-rows: [label-s]42px[label-e input-s]42px[input-e] 42px [button-s]52px[button-e];
+
+        label {
+          grid-row: label-s/label-e;
+          @include secondary-text;
+          font-size: 24px;
+        }
+
+        input {
+          grid-row: input-s/input-e;
+          width: 100%;
+
+          text-align: center;
+          @include primary-text;
+          background-color: $white;
+          border: 2px solid $base-color;
+          border-radius: 24px;
+          color: $dark-grey;
+
+          transition: 0.2s ease-in-out;
+
+          &:focus {
+            outline: none;
+            border: 2px solid $white;
+          }
+        }
+
+        button {
+          grid-row: button-s/button-e;
+          width: 128px;
+          height: 56px;
+          justify-self: center;
+
+          @include primary-text;
+          color: $mid-grey;
+          background-color: $dark-grey;
+          border: none;
+          border-radius: 8px;
+
+          transition: 0.1s ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+            color: $white;
+            background-color: $mid-grey;
+          }
+        }
+      }
+    }
+
+    .start__back {
+      justify-self: center;
+      width: 50px;
+      font-size: 2rem;
+      @include secondary-text;
+      transition: 0.3s;
+
+      &:hover {
+        color: $mid-grey;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__footer {
+    grid-row: footer-s/footer-e;
+
+    display: grid;
+    justify-content: center;
+
+    @include tertiary-text;
+  }
+}
