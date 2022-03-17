@@ -8,3 +8,12 @@
     @include primary-text;
   }
 }
+
+.page-footer {
+  grid-row: footer-s/footer-e;
+
+  display: grid;
+  justify-content: center;
+
+  @include tertiary-text;
+}

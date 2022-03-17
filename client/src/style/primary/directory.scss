@@ -1,0 +1,69 @@
+.directory {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: 24px[header-s]64px[header-e content-s]1fr[content-e footer-s]12px[footer-e]8px;
+  height: 100%;
+
+  &__header {
+    grid-row: header-s/header-e;
+  }
+
+  .content {
+    height: 80%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-row: content-s/content-e;
+    grid-template-columns: [join-s]1fr[join-e host-s]1fr[host-e];
+    grid-template-rows: [player-name-s]42px[player-name-e body-s]1fr[body-e back-s]42px[back-e]8px;
+
+    &__title {
+      grid-row: player-name-s/player-name-e;
+      grid-column: join-s/host-e;
+
+      font-size: 2rem;
+      @include primary-text;
+    }
+
+    &__join {
+      grid-column: join-s/join-e;
+    }
+
+    &__host {
+      grid-column: host-s/host-e;
+    }
+
+    &__join,
+    &__host {
+      grid-row: body-s/body-e;
+      text-align: center;
+      width: 120px;
+
+      font-size: 4rem;
+      font-weight: 600;
+      @include secondary-text;
+
+      transition: 0.2s;
+
+      &:hover {
+        color: $mid-grey;
+        cursor: pointer;
+      }
+    }
+
+    &__back {
+      grid-column: join-s/host-e;
+      justify-self: center;
+      width: 50px;
+      font-size: 2rem;
+      @include secondary-text;
+      transition: 0.3s;
+
+      &:hover {
+        color: $mid-grey;
+        cursor: pointer;
+      }
+    }
+  }
+}

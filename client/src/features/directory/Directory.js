@@ -15,22 +15,24 @@ const Directory = () => {
     <div className='directory'>
       <PageHeader className='directory__header' header='WIZARD DUEL' />
 
-      <PageTitle className='directory__title' title={`${player.player_name}`} />
+      <div className='directory__content content'>
+        <PageTitle className='content__title' title={`${player.player_name}`} />
 
-      <div
-        className='directory__join'
-        onClick={() => handleRouteSelect("/join")}>
-        JOIN
-      </div>
+        <div
+          className='content__join'
+          onClick={() => handleRouteSelect("/join")}>
+          JOIN
+        </div>
 
-      <div
-        className='directory__host'
-        onClick={() => handleRouteSelect("/host")}>
-        HOST
-      </div>
+        <div
+          className='content__host'
+          onClick={() => handleRouteSelect("/host")}>
+          HOST
+        </div>
 
-      <div className='directory__back' onClick={() => history.push("/")}>
-        BACK
+        <div className='content__back' onClick={() => history.push("/")}>
+          BACK
+        </div>
       </div>
 
       <PageFooter className='directory__footer' />
