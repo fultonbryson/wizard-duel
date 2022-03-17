@@ -36,25 +36,30 @@ const Join = () => {
     <div className='join'>
       <PageHeader className='join__header' header='JOIN' />
 
-      <PageTitle className='join__title' title={`${player.player_name}`} />
+      <div className='join__content content'>
+        <PageTitle
+          className='content__player-name'
+          title={`${player.player_name}`}
+        />
 
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <div className='join__form'>
-              <label>Search for Match</label>
-              <Field
-                name='player_match_id'
-                component='input'
-                placeholder='Match ID'
-              />
+        <Form
+          onSubmit={onSubmit}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <div className='join__form'>
+                <label>Search for Match</label>
+                <Field
+                  name='player_match_id'
+                  component='input'
+                  placeholder='Match ID'
+                />
 
-              <button type='submit'>SEARCH</button>
-            </div>
-          </form>
-        )}
-      />
+                <button type='submit'>SEARCH</button>
+              </div>
+            </form>
+          )}
+        />
+      </div>
 
       <PageFooter className='join__footer' />
     </div>
