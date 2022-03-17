@@ -1,0 +1,78 @@
+@import "../helpers/variables.scss";
+@import "../helpers/mixins.scss";
+
+.lobby {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: 24px[header-s]64px[header-e content-s]1fr[content-e footer-s]12px[footer-e]8px;
+  height: 100%;
+
+  text-align: center;
+
+  &__header {
+    grid-row: header-s/header-e;
+  }
+
+  .content {
+    height: 100%;
+    justify-content: center;
+    grid-row: content-s/content-e;
+    display: grid;
+    grid-template-rows: [match-format-s]42px[match-format-e match-id-s]42px[match-id-e roster-s]350px[roster-e buttons-s]64px[buttons-e];
+    grid-template-columns: [s leave-s]1fr[leave-e enter-s]1fr[enter-e e];
+
+    &__match-format {
+      grid-row: match-format-s/match-format-e;
+      grid-column: s/e;
+      @include primary-text;
+    }
+
+    &__match-id {
+      grid-row: match-id-s/match-id-e;
+      grid-column: s/e;
+      @include primary-text;
+    }
+
+    &__roster {
+      grid-row: roster-s/roster-e;
+      grid-column: s/e;
+      width: 100%;
+      min-width: 300px;
+
+      border: 4px solid $light-grey;
+      border-radius: 4px;
+    }
+
+    &__leave {
+      grid-column: leave-s/leave-e;
+      justify-self: flex-start;
+    }
+
+    &__enter-match {
+      grid-column: enter-s/enter-e;
+      justify-self: flex-end;
+    }
+
+    &__leave,
+    &__enter-match {
+      grid-row: buttons-s/buttons-e;
+      align-self: flex-end;
+
+      @include secondary-text;
+      font-size: 1.8rem;
+
+      transition: 0.3s;
+
+      &:hover {
+        color: $mid-grey;
+        cursor: pointer;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  &__footer {
+    grid-row: footer-s/footer-e;
+  }
+}

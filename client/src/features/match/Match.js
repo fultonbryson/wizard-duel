@@ -26,13 +26,15 @@ const Match = () => {
   function handleEndMatch() {
     fetch(`${API_URL}/players/${player.player_match_id}`, {
       method: "DELETE",
+      mode: "cors",
     }).then(() => {
-      fetch(`${API_URL}/matches/${match.match_id}`, { method: "DELETE" }).then(
-        () => {
-          console.log("Match Ended");
-          history.push("/");
-        }
-      );
+      fetch(`${API_URL}/matches/${match.match_id}`, {
+        method: "DELETE",
+        mode: "cors",
+      }).then(() => {
+        console.log("Match Ended");
+        history.push("/");
+      });
     });
   }
 

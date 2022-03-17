@@ -18,6 +18,7 @@ const Join = () => {
     const data = JSON.parse(JSON.stringify(values));
     fetch(`${API_URL}/player-match/${player.player_id}`, {
       method: "PUT",
+      mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })

@@ -22,6 +22,7 @@ const Host = () => {
 
     fetch(`${API_URL}/match`, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,6 +36,7 @@ const Host = () => {
 
         fetch(`${API_URL}/player-match/${player.player_id}`, {
           method: "PUT",
+          mode: "cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             player_match_id: match.id,

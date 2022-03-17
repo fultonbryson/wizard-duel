@@ -18,6 +18,7 @@ const Counter = (props) => {
   function handleDecrement() {
     fetch(`${API_URL}/player-health/${player.player_id}`, {
       method: "PUT",
+      mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ player_health_total: healthTotal - 1 }),
     })
@@ -34,6 +35,7 @@ const Counter = (props) => {
   function handleIncrement() {
     fetch(`${API_URL}/player-health/${player.player_id}`, {
       method: "PUT",
+      mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ player_health_total: healthTotal + 1 }),
     })

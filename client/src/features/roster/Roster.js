@@ -15,7 +15,10 @@ const Roster = (props) => {
   const [playerList, setPlayerList] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/players/${match.match_id}`)
+    fetch(`${API_URL}/players/${match.match_id}`, {
+      method: "GET",
+      mode: "cors",
+    })
       .then((response) => response.json())
       .then((data) => {
         setPlayerList(data);
