@@ -1,0 +1,125 @@
+@import "../helpers/mixins.scss";
+@import "../helpers//variables.scss";
+
+.match {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  grid-template-rows: 24px[header-s]64px[header-e body-s]1fr[body-e toggle-s]42px[toggle-e] 64px [footer-s]12px[footer-e]8px;
+
+  &__header {
+    grid-row: header-s/header-e;
+    justify-self: center;
+  }
+
+  .counter {
+    grid-row: body-s/body-e;
+    display: grid;
+    text-align: center;
+    grid-template-rows: [s]1fr[e];
+    grid-template-columns: [s decrement-s]1fr[decrement-e increment-s]1fr[increment-e e];
+
+    &__decr {
+      grid-column: decrement-s/decrement-e;
+      z-index: 10;
+      width: 100%;
+      min-width: 150px;
+      height: 100%;
+      min-height: 200px;
+      display: grid;
+      justify-content: flex-start;
+    }
+
+    &__health {
+      z-index: 5;
+      grid-column: s/e;
+
+      @include primary-text;
+    }
+
+    &__incr {
+      grid-column: increment-s/increment-e;
+      z-index: 10;
+      width: 100%;
+      min-width: 150px;
+      height: 100%;
+      min-height: 200px;
+      display: grid;
+      justify-content: flex-end;
+    }
+
+    &__decr,
+    &__incr {
+      border-bottom: 4px solid $base-color;
+      border-radius: 2px;
+
+      transition: 0.1s ease-in-out;
+
+      &:hover {
+        border-bottom: 2px solid $light-grey;
+        cursor: pointer;
+      }
+    }
+
+    & > * {
+      grid-row: s/e;
+      font-size: 4rem;
+      display: grid;
+      align-items: center;
+
+      @include primary-text;
+    }
+  }
+
+  .subscreen {
+    grid-row: body-s/body-e;
+    display: grid;
+
+    align-items: center;
+    grid-template-rows: [end-match-s]42px[end-match-e roster-s]1fr[roster-e];
+
+    &__end-match {
+      grid-row: end-match-s/end-match-e;
+      justify-self: center;
+      @include secondary-text;
+      font-size: 2rem;
+
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        color: $light-grey;
+        letter-spacing: 2px;
+        cursor: pointer;
+      }
+    }
+
+    &__roster {
+      grid-row: roster-s/roster-e;
+    }
+  }
+
+  &__roster-toggle {
+    display: grid;
+    justify-self: center;
+    grid-row: toggle-s/toggle-e;
+    width: 24px;
+    height: 100%;
+    padding: 2px 12px;
+    color: $light-grey;
+    background-color: $mid-grey;
+    border-radius: 100%;
+
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: $white;
+      background-color: $dark-grey;
+      cursor: pointer;
+    }
+  }
+
+  &__footer {
+    grid-row: footer-s/footer-e;
+  }
+}

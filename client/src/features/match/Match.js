@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import Counter from "../counter/counter";
 import Roster from "../roster/Roster";
@@ -55,11 +57,20 @@ const Match = () => {
         <Counter className='match__counter' player={player} />
       )}
 
-      <div
-        className='match__roster-toggle'
-        onClick={() => handleRosterToggle()}>
-        Toggle Roster
-      </div>
+      {rosterToggle ? (
+        <FontAwesomeIcon
+          className={`match__roster-toggle`}
+          icon={faArrowDown}
+          onClick={() => handleRosterToggle()}
+        />
+      ) : (
+        <FontAwesomeIcon
+          className={`match__roster-toggle`}
+          icon={faArrowUp}
+          onClick={() => handleRosterToggle()}
+        />
+      )}
+
       <PageFooter className='match__footer' />
     </div>
   );
