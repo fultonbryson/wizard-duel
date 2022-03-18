@@ -24,8 +24,8 @@ const Join = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         dispatch(setPlayerMatchId(data.player_match_id));
+
         history.push(`/lobby/${data.player_match_id}`);
       })
       .catch((error) => {

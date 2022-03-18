@@ -28,8 +28,8 @@ const Start = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         dispatch(createPlayer(data));
+
         history.push("/directory");
       })
       .catch((error) => {

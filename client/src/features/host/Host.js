@@ -18,8 +18,6 @@ const Host = () => {
     const API_URL = "http://127.0.0.1:5000/api";
     const data = JSON.parse(JSON.stringify(values));
 
-    console.log(data);
-
     fetch(`${API_URL}/match`, {
       method: "POST",
       mode: "cors",
@@ -30,8 +28,8 @@ const Host = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const match = { ...data };
+
         dispatch(setMatchDetails(match));
 
         fetch(`${API_URL}/player-match/${player.player_id}`, {
