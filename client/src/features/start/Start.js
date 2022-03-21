@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
 
@@ -13,7 +13,7 @@ const Start = () => {
   const [screenToggle, setScreenToggle] = useState(false);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function onSubmit(values) {
     const data = JSON.parse(JSON.stringify({ ...values }));
@@ -30,7 +30,7 @@ const Start = () => {
       .then((data) => {
         dispatch(createPlayer(data));
 
-        history.push("/directory");
+        navigate("/directory");
       })
       .catch((error) => {
         console.log(error);

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./app";
 
 import { store } from "./store";
@@ -20,14 +20,14 @@ function main() {
     <Provider store={store}>
       <BrowserRouter>
         <App>
-          <Switch>
-            <Route path='/' exact component={Start} />
-            <Route path='/directory' exact component={Directory} />
-            <Route path='/join' exact component={Join} />
-            <Route path='/host' exact component={Host} />
-            <Route path='/lobby/:id' exact component={Lobby} />
-            <Route path='/match/:id' exact component={Match} />
-          </Switch>
+          <Routes>
+            <Route path='/' element={<Start />} />
+            <Route path='/directory' element={<Directory />} />
+            <Route path='/join' element={<Join />} />
+            <Route path='/host' element={<Host />} />
+            <Route path='/lobby/:id' element={<Lobby />} />
+            <Route path='/match/:id' element={<Match />} />
+          </Routes>
         </App>
       </BrowserRouter>
     </Provider>,

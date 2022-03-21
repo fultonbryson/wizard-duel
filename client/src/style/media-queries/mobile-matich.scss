@@ -75,16 +75,9 @@
   .subscreen {
     grid-row: body-s/body-e;
     display: grid;
-    position: absolute;
-    overflow-y: hidden;
-    justify-self: center;
-    width: 100%;
-    top: 10%;
-    z-index: 100;
-    background: $base-color;
+
     align-items: center;
     grid-template-rows: [end-match-s]42px[end-match-e roster-s]1fr[roster-e];
-    transition: all 0.5s ease-in-out;
 
     &__end-match {
       grid-row: end-match-s/end-match-e;
@@ -106,13 +99,6 @@
     }
   }
 
-  .closed {
-    transition: all 0.5s ease-in-out;
-
-    top: 100%;
-    height: 0;
-  }
-
   &__roster-toggle {
     display: grid;
     justify-self: center;
@@ -124,7 +110,7 @@
     background-color: $mid-grey;
     border-radius: 100%;
 
-    transition: all 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 
     &:hover {
       color: $white;

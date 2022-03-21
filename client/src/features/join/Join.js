@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 
 import { API_URL } from "../../apiData/apiData";
@@ -11,7 +11,7 @@ import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 const Join = () => {
   const player = useSelector((state) => state.player);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onSubmit = (values) => {
@@ -26,7 +26,7 @@ const Join = () => {
       .then((data) => {
         dispatch(setPlayerMatchId(data.player_match_id));
 
-        history.push(`/lobby/${data.player_match_id}`);
+        navigate(`/lobby/${data.player_match_id}`);
       })
       .catch((error) => {
         console.log(error);

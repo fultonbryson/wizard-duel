@@ -1,21 +1,22 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Field } from "react-final-form";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 import { setPlayerMatchId } from "../../slices/playerSlice";
 import { setMatchDetails } from "../../slices/matchSlice";
 
+import { API_URL } from "../../apiData/apiData";
+
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
 const Host = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const player = useSelector((state) => state.player);
 
   function onSubmit(values) {
-    const API_URL = "http://127.0.0.1:5000/api";
     const data = JSON.parse(JSON.stringify(values));
 
     fetch(`${API_URL}/match`, {
@@ -43,7 +44,7 @@ const Host = () => {
           .then((response) => response.json())
           .then((data) => {
             dispatch(setPlayerMatchId(data.player_match_id));
-            history.push(`/lobby/${match.id}`);
+            navigate(`/lobby/${match.id}`);
           })
           .catch((error) => {
             console.log(error);

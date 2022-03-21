@@ -21,6 +21,7 @@ const Roster = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setPlayerList(data);
         dispatch(setMatchPlayerList(playerList));
       })

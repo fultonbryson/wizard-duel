@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
 
 const Directory = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const player = useSelector((state) => state.player);
 
   function handleRouteSelect(route) {
-    history.push(`${route}`);
+    navigate(`${route}`);
   }
   return (
     <div className='directory'>
@@ -30,7 +30,7 @@ const Directory = () => {
           HOST
         </div>
 
-        <div className='content__back' onClick={() => history.push("/")}>
+        <div className='content__back' onClick={() => navigate("/")}>
           BACK
         </div>
       </div>

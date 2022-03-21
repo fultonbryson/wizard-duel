@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 import Roster from "../roster/Roster";
 import { PageHeader, PageTitle, PageFooter } from "../pageHelpers/pageHelpers";
@@ -13,7 +13,7 @@ import {
 import { API_URL } from "../../apiData/apiData";
 
 const Lobby = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const match = useSelector((state) => state.match);
@@ -23,7 +23,7 @@ const Lobby = () => {
 
   function handleLeaveLobby() {
     dispatch(setPlayerMatchId(0));
-    history.push("/directory");
+    navigate("/directory");
   }
 
   function handleEnterMatch() {
@@ -36,13 +36,11 @@ const Lobby = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setPlayerHealthTotal(data.player_health_total));
-        history.push(`/match/${match.match_id}`);
+        navigate(`/match/${match.match_id}`);
       });
   }
 
   useEffect(() => {
-    const API_URL = "http://127.0.0.1:5000/api";
-
     fetch(`${API_URL}/matches/${player.player_match_id}`, {
       method: "GET",
       mode: "cors",

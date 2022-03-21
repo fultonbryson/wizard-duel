@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,14 +14,14 @@ import { API_URL } from "../../apiData/apiData";
 const Match = () => {
   const player = useSelector((state) => state.player);
   const match = useSelector((state) => state.match);
-  const history = useHistory();
-  const [rosterToggle, setRosterToggle] = useState(false);
+  const navigate = useNavigate();
+  const [rosterToggle, setRosterToggle] = useState("closed");
 
   function handleRosterToggle() {
-    if (rosterToggle) {
-      setRosterToggle(false);
+    if (rosterToggle == "open") {
+      setRosterToggle("closed");
     } else {
-      setRosterToggle(true);
+      setRosterToggle("open");
     }
   }
 
@@ -35,7 +35,7 @@ const Match = () => {
         mode: "cors",
       }).then(() => {
         console.log("Match Ended");
-        history.push("/");
+        navigate("/");
       });
     });
   }
@@ -44,20 +44,16 @@ const Match = () => {
     <div className='match'>
       <PageHeader className='match__header' header={`${player.player_name}`} />
 
-      {rosterToggle ? (
-        <div className='match__subscreen subscreen'>
-          <Roster className='subscreen__roster' inMatch={true} />
-          <div
-            className='subscreen__end-match'
-            onClick={() => handleEndMatch()}>
-            End Match
-          </div>
+      <div className={`match__subscreen subscreen ${rosterToggle}`}>
+        <Roster className='subscreen__roster' inMatch={true} />
+        <div className='subscreen__end-match' onClick={() => handleEndMatch()}>
+          End Match
         </div>
-      ) : (
-        <Counter className='match__counter' player={player} />
-      )}
+      </div>
 
-      {rosterToggle ? (
+      <Counter className='match__counter' player={player} />
+
+      {rosterToggle == "open" ? (
         <FontAwesomeIcon
           className={`match__roster-toggle`}
           icon={faArrowDown}
