@@ -19,6 +19,6 @@ export const matchSlice = createSlice({
   },
 });
 
-export const { setMatchDetails, setMatchPlayerList } = matchSlice.actions;
+export const { setMatchDetails } = matchSlice.actions;
 
 export default matchSlice.reducer;
