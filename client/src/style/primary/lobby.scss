@@ -54,6 +54,16 @@
       justify-self: flex-end;
     }
 
+    .disabled {
+      color: $dark-grey;
+
+      &:hover {
+        color: $dark-grey;
+        cursor: default;
+        letter-spacing: 0px;
+      }
+    }
+
     &__leave,
     &__enter-match {
       grid-row: buttons-s/buttons-e;

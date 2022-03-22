@@ -34,7 +34,7 @@ const Roster = (props) => {
             </div>
           ))
         : playerList.map((player) => (
-            <div className='roster__player player'>
+            <div key={player.id} className='roster__player player'>
               <div className='player__name'>{player.player_name}</div>
             </div>
           ))}

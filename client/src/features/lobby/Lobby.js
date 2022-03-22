@@ -66,18 +66,22 @@ const Lobby = () => {
         />
         <PageTitle
           className='content__match-id'
-          title={matchFound ? `${match.match_id}` : "No Match Found"}
+          title={match.match_id ? `${match.match_id}` : "No Match Found"}
         />
         <Roster className='content__roster' inMatch={false} />
         <div className='content__leave' onClick={() => handleLeaveLobby()}>
           Leave Lobby
         </div>
 
-        <div
-          className='content__enter-match'
-          onClick={() => handleEnterMatch()}>
-          Enter Match
-        </div>
+        {matchFound == true ? (
+          <div
+            className='content__enter-match active'
+            onClick={() => handleEnterMatch()}>
+            Enter Match
+          </div>
+        ) : (
+          <div className='content__enter-match disabled'>Enter Match</div>
+        )}
       </div>
 
       <PageFooter />
